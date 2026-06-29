@@ -1,0 +1,1318 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Nor Soup</title>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+Arabic:wght@400;600;700&family=Noto+Sans+Arabic:wght@300;400;500;600&display=swap" rel="stylesheet" />
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --cream: #F7FAF7;
+    --brown: #2D6A4F;
+    --brown-dark: #1B4332;
+    --brown-light: #74C69D;
+    --text: #0D2B1E;
+    --text-light: #4A7A62;
+    --border: #C8E6D4;
+    --white: #FFFFFF;
+    --green: #25D366;
+    --font-serif: 'Noto Serif Arabic', serif;
+    --font-sans: 'Noto Sans Arabic', sans-serif;
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: var(--font-sans);
+    background: var(--cream);
+    color: var(--text);
+    direction: rtl;
+    font-size: 15px;
+  }
+
+  /* ── ANNOUNCEMENT BAR ── */
+  .announcement-bar {
+    background: #1B4332;
+    color: #B7E4C7;
+    text-align: center;
+    padding: 9px 16px;
+    font-size: 13px;
+    letter-spacing: 0.3px;
+    font-weight: 500;
+  }
+
+  /* ── HEADER ── */
+  header {
+    background: var(--white);
+    border-bottom: 1px solid var(--border);
+    position: sticky;
+    top: 0;
+    z-index: 100;
+  }
+  .header-inner {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 14px 24px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  .logo {
+    font-family: var(--font-serif);
+    font-size: 26px;
+    font-weight: 700;
+    color: var(--brown-dark);
+    text-decoration: none;
+    letter-spacing: -0.5px;
+  }
+  nav { display: flex; gap: 24px; }
+  nav a {
+    font-size: 13.5px;
+    color: var(--text);
+    text-decoration: none;
+    font-weight: 500;
+    transition: color 0.2s;
+  }
+  nav a:hover { color: var(--brown); }
+  .header-icons { display: flex; gap: 14px; align-items: center; }
+  .header-icons svg { width: 20px; height: 20px; stroke: var(--text); fill: none; cursor: pointer; }
+  .cart-btn {
+    background: var(--brown-dark);
+    color: var(--white);
+    border: none;
+    padding: 8px 18px;
+    border-radius: 20px;
+    font-family: var(--font-sans);
+    font-size: 13px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 7px;
+    transition: background 0.2s;
+  }
+  .cart-btn:hover { background: var(--brown); }
+  .cart-count {
+    background: var(--brown-light);
+    color: var(--white);
+    width: 18px; height: 18px;
+    border-radius: 50%;
+    font-size: 11px;
+    display: flex; align-items: center; justify-content: center;
+    font-weight: 600;
+  }
+
+  /* ── HERO ── */
+  .hero {
+    position: relative;
+    height: 90vh;
+    min-height: 520px;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .hero img.hero-bg {
+    position: absolute; inset: 0;
+    width: 100%; height: 100%;
+    object-fit: cover;
+    object-position: center top;
+    filter: brightness(0.72);
+  }
+  .hero-overlay {
+    position: absolute; inset: 0;
+    background: linear-gradient(to bottom, rgba(44,26,14,0.25) 0%, rgba(44,26,14,0.5) 100%);
+  }
+  .hero-content {
+    position: relative;
+    text-align: center;
+    color: var(--white);
+    padding: 24px;
+    max-width: 680px;
+  }
+  .hero-logo-img {
+    width: 200px;
+    margin-bottom: 20px;
+    filter: brightness(0) invert(1);
+  }
+  .hero-tagline {
+    font-family: var(--font-serif);
+    font-size: clamp(20px, 4vw, 30px);
+    font-weight: 600;
+    line-height: 1.55;
+    margin-bottom: 10px;
+    text-shadow: 0 2px 8px rgba(0,0,0,0.3);
+  }
+  .hero-sub {
+    font-size: 14px;
+    opacity: 0.88;
+    margin-bottom: 28px;
+    line-height: 1.7;
+  }
+  .hero-cta {
+    background: var(--white);
+    color: var(--brown-dark);
+    border: none;
+    padding: 13px 36px;
+    border-radius: 30px;
+    font-family: var(--font-sans);
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+    text-decoration: none;
+    display: inline-block;
+    transition: background 0.2s, color 0.2s;
+  }
+  .hero-cta:hover { background: var(--brown-light); color: var(--white); }
+
+  /* ── PILLS ── */
+  .pills {
+    background: var(--brown-dark);
+    padding: 18px 24px;
+    display: flex;
+    justify-content: center;
+    gap: 32px;
+    flex-wrap: wrap;
+  }
+  .pill {
+    color: var(--white);
+    font-size: 13px;
+    display: flex;
+    align-items: center;
+    gap: 7px;
+    opacity: 0.92;
+  }
+  .pill-dot {
+    width: 7px; height: 7px;
+    border-radius: 50%;
+    background: #B7E4C7;
+    flex-shrink: 0;
+  }
+
+  /* ── SECTION HEADINGS ── */
+  .section { padding: 64px 24px; max-width: 1200px; margin: 0 auto; }
+  .section-title {
+    font-family: var(--font-serif);
+    font-size: clamp(22px, 3vw, 32px);
+    color: var(--brown-dark);
+    text-align: center;
+    margin-bottom: 40px;
+    font-weight: 700;
+  }
+
+  /* ── INGREDIENTS GRID ── */
+  .ingredients-section {
+    background: var(--white);
+    padding: 64px 24px;
+  }
+  .ingredients-grid {
+    max-width: 1000px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
+    gap: 32px;
+    text-align: center;
+  }
+  .ingredient-card img {
+    width: 100%;
+    max-width: 200px;
+    height: 180px;
+    object-fit: cover;
+    border-radius: 12px;
+    margin-bottom: 14px;
+  }
+  .ingredient-card h3 {
+    font-family: var(--font-serif);
+    font-size: 17px;
+    color: var(--brown-dark);
+    margin-bottom: 8px;
+  }
+  .ingredient-card p {
+    font-size: 13px;
+    color: var(--text-light);
+    line-height: 1.65;
+  }
+
+  /* ── PRODUCTS ── */
+  .products-section { background: var(--cream); }
+  .products-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+    gap: 24px;
+  }
+  .product-card {
+    background: var(--white);
+    border-radius: 14px;
+    overflow: hidden;
+    border: 1px solid var(--border);
+    transition: box-shadow 0.25s, transform 0.25s;
+    cursor: pointer;
+  }
+  .product-card:hover {
+    box-shadow: 0 8px 28px rgba(107,76,53,0.14);
+    transform: translateY(-3px);
+  }
+  .product-img-wrap {
+    position: relative;
+    height: 220px;
+    overflow: hidden;
+  }
+  .product-img-wrap img {
+    width: 100%; height: 100%;
+    object-fit: cover;
+    transition: transform 0.35s;
+  }
+  .product-card:hover .product-img-wrap img { transform: scale(1.05); }
+  .product-badge {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background: var(--brown);
+    color: var(--white);
+    font-size: 11px;
+    padding: 4px 10px;
+    border-radius: 12px;
+  }
+  .out-badge {
+    position: absolute; top: 10px; right: 10px;
+    background: #888;
+    color: #fff;
+    font-size: 11px;
+    padding: 4px 10px;
+    border-radius: 12px;
+  }
+  .product-info { padding: 16px; }
+  .product-skin-type {
+    font-size: 11px;
+    color: var(--text-light);
+    margin-bottom: 6px;
+    line-height: 1.4;
+  }
+  .product-name {
+    font-family: var(--font-serif);
+    font-size: 15.5px;
+    color: var(--brown-dark);
+    font-weight: 600;
+    margin-bottom: 10px;
+  }
+  .product-bottom {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  .product-price {
+    font-size: 16px;
+    font-weight: 700;
+    color: var(--brown);
+  }
+  .add-btn {
+    background: var(--brown-dark);
+    color: var(--white);
+    border: none;
+    padding: 7px 14px;
+    border-radius: 18px;
+    font-size: 12px;
+    cursor: pointer;
+    font-family: var(--font-sans);
+    transition: background 0.2s;
+  }
+  .add-btn:hover { background: var(--brown); }
+  .add-btn:disabled {
+    background: #ccc;
+    cursor: not-allowed;
+  }
+
+  /* ── REVIEWS ── */
+  .reviews-section { background: var(--white); padding: 64px 24px; }
+  .reviews-grid {
+    max-width: 1100px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 20px;
+  }
+  .review-card {
+    background: var(--cream);
+    border-radius: 12px;
+    padding: 20px;
+    border: 1px solid var(--border);
+  }
+  .stars { color: #E6A817; font-size: 15px; margin-bottom: 8px; }
+  .review-text {
+    font-size: 13.5px;
+    color: var(--text);
+    line-height: 1.7;
+    margin-bottom: 12px;
+  }
+  .reviewer { font-size: 12px; color: var(--text-light); font-weight: 600; }
+  .review-product { font-size: 11px; color: var(--brown-light); }
+
+  /* ── SKIN TYPE CARDS ── */
+  .skin-section { background: var(--cream); }
+  .skin-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 20px;
+  }
+  .skin-card {
+    background: var(--brown-dark);
+    color: var(--white);
+    border-radius: 14px;
+    padding: 28px 22px;
+    text-align: center;
+    cursor: pointer;
+    transition: background 0.2s;
+    border: 1px solid var(--border);
+  }
+  .skin-card:hover { background: var(--brown); }
+  .skin-card h3 { font-family: var(--font-serif); font-size: 17px; margin-bottom: 8px; }
+  .skin-card p { font-size: 13px; opacity: 0.85; line-height: 1.6; }
+
+  /* ── PRESS ── */
+  .press-section {
+    background: var(--white);
+    padding: 64px 24px;
+    text-align: center;
+  }
+  .press-inner { max-width: 900px; margin: 0 auto; }
+  .press-section img {
+    max-width: 100%;
+    border-radius: 12px;
+    margin-bottom: 20px;
+    border: 1px solid var(--border);
+  }
+  .press-section p {
+    font-size: 14px;
+    color: var(--text-light);
+    margin-bottom: 14px;
+    line-height: 1.7;
+  }
+  .press-link {
+    color: var(--brown);
+    text-decoration: underline;
+    font-size: 14px;
+  }
+
+  /* ── CART SIDEBAR ── */
+  .cart-overlay {
+    position: fixed; inset: 0;
+    background: rgba(44,26,14,0.45);
+    z-index: 300;
+    display: none;
+    opacity: 0;
+    transition: opacity 0.3s;
+  }
+  .cart-overlay.open { display: block; opacity: 1; }
+  .cart-sidebar {
+    position: fixed;
+    top: 0; left: 0;
+    width: 380px; max-width: 100vw;
+    height: 100%;
+    background: var(--white);
+    z-index: 301;
+    transform: translateX(-100%);
+    transition: transform 0.3s ease;
+    display: flex;
+    flex-direction: column;
+    box-shadow: 4px 0 24px rgba(0,0,0,0.15);
+  }
+  .cart-sidebar.open { transform: translateX(0); }
+  .cart-header {
+    padding: 20px 22px;
+    border-bottom: 1px solid var(--border);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  .cart-header h2 { font-family: var(--font-serif); font-size: 19px; color: var(--brown-dark); }
+  .close-cart {
+    background: none; border: none; cursor: pointer;
+    font-size: 22px; color: var(--text-light);
+    line-height: 1;
+  }
+  .cart-items { flex: 1; overflow-y: auto; padding: 18px 22px; }
+  .cart-empty {
+    text-align: center;
+    padding: 60px 0;
+    color: var(--text-light);
+    font-size: 14px;
+  }
+  .cart-empty a {
+    color: var(--brown);
+    text-decoration: underline;
+  }
+  .cart-item {
+    display: flex;
+    gap: 14px;
+    padding: 14px 0;
+    border-bottom: 1px solid var(--border);
+    align-items: flex-start;
+  }
+  .cart-item img {
+    width: 70px; height: 70px;
+    object-fit: cover;
+    border-radius: 8px;
+    border: 1px solid var(--border);
+  }
+  .cart-item-info { flex: 1; }
+  .cart-item-name { font-size: 13.5px; font-weight: 600; color: var(--brown-dark); margin-bottom: 6px; }
+  .cart-item-price { font-size: 13px; color: var(--brown); font-weight: 700; }
+  .qty-controls { display: flex; align-items: center; gap: 10px; margin-top: 8px; }
+  .qty-btn {
+    background: var(--cream);
+    border: 1px solid var(--border);
+    width: 26px; height: 26px;
+    border-radius: 50%;
+    cursor: pointer;
+    font-size: 15px;
+    display: flex; align-items: center; justify-content: center;
+    transition: background 0.15s;
+  }
+  .qty-btn:hover { background: var(--border); }
+  .qty-num { font-size: 14px; font-weight: 600; min-width: 18px; text-align: center; }
+  .remove-item { background: none; border: none; color: var(--text-light); cursor: pointer; font-size: 17px; margin-top: 4px; }
+
+  .cart-footer { padding: 18px 22px; border-top: 1px solid var(--border); }
+  .cart-subtotal {
+    display: flex; justify-content: space-between;
+    font-size: 15px; font-weight: 700;
+    color: var(--brown-dark);
+    margin-bottom: 16px;
+  }
+  .checkout-btn {
+    width: 100%;
+    background: var(--green);
+    color: var(--white);
+    border: none;
+    padding: 15px;
+    border-radius: 12px;
+    font-family: var(--font-sans);
+    font-size: 15px;
+    font-weight: 600;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 9px;
+    transition: background 0.2s;
+  }
+  .checkout-btn:hover { background: #1ebd5a; }
+  .checkout-btn svg { width: 20px; height: 20px; fill: white; }
+
+  /* ── ORDER FORM MODAL ── */
+  .modal-overlay {
+    position: fixed; inset: 0;
+    background: rgba(44,26,14,0.55);
+    z-index: 400;
+    display: none;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+  }
+  .modal-overlay.open { display: flex; }
+  .modal {
+    background: var(--white);
+    border-radius: 18px;
+    padding: 36px 32px;
+    max-width: 500px;
+    width: 100%;
+    max-height: 90vh;
+    overflow-y: auto;
+    position: relative;
+    box-shadow: 0 20px 60px rgba(44,26,14,0.25);
+  }
+  .modal h2 {
+    font-family: var(--font-serif);
+    font-size: 22px;
+    color: var(--brown-dark);
+    margin-bottom: 6px;
+  }
+  .modal-subtitle {
+    font-size: 13px;
+    color: var(--text-light);
+    margin-bottom: 26px;
+  }
+  .close-modal {
+    position: absolute;
+    top: 18px; left: 18px;
+    background: none; border: none;
+    font-size: 22px; cursor: pointer;
+    color: var(--text-light);
+    line-height: 1;
+  }
+  .order-summary {
+    background: var(--cream);
+    border-radius: 10px;
+    padding: 14px 16px;
+    margin-bottom: 22px;
+    border: 1px solid var(--border);
+  }
+  .order-summary-title { font-size: 12px; color: var(--text-light); margin-bottom: 10px; font-weight: 600; }
+  .order-summary-item {
+    display: flex; justify-content: space-between;
+    font-size: 13px; color: var(--text);
+    padding: 4px 0;
+  }
+  .order-summary-total {
+    display: flex; justify-content: space-between;
+    font-size: 15px; font-weight: 700;
+    color: var(--brown-dark);
+    border-top: 1px solid var(--border);
+    padding-top: 10px;
+    margin-top: 8px;
+  }
+  .form-field { margin-bottom: 16px; }
+  .form-field label {
+    display: block;
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--brown-dark);
+    margin-bottom: 6px;
+  }
+  .form-field input,
+  .form-field select,
+  .form-field textarea {
+    width: 100%;
+    padding: 11px 14px;
+    border: 1.5px solid var(--border);
+    border-radius: 9px;
+    font-family: var(--font-sans);
+    font-size: 14px;
+    color: var(--text);
+    background: var(--white);
+    transition: border-color 0.2s;
+    direction: rtl;
+    outline: none;
+  }
+  .form-field input:focus,
+  .form-field select:focus,
+  .form-field textarea:focus {
+    border-color: var(--brown);
+  }
+  .form-field textarea { resize: vertical; min-height: 70px; }
+  .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+  .whatsapp-submit {
+    width: 100%;
+    background: var(--green);
+    color: var(--white);
+    border: none;
+    padding: 15px;
+    border-radius: 12px;
+    font-family: var(--font-sans);
+    font-size: 16px;
+    font-weight: 700;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    margin-top: 8px;
+    transition: background 0.2s;
+  }
+  .whatsapp-submit:hover { background: #1ebd5a; }
+  .whatsapp-submit svg { width: 22px; height: 22px; fill: white; }
+  .form-note {
+    font-size: 12px;
+    color: var(--text-light);
+    text-align: center;
+    margin-top: 10px;
+    line-height: 1.6;
+  }
+
+  /* ── FOOTER ── */
+  footer {
+    background: #0D2B1E;
+    color: var(--white);
+    padding: 52px 24px 28px;
+  }
+  .footer-inner {
+    max-width: 1100px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 36px;
+    margin-bottom: 36px;
+  }
+  .footer-logo {
+    font-family: var(--font-serif);
+    font-size: 22px;
+    font-weight: 700;
+    color: var(--white);
+    margin-bottom: 12px;
+  }
+  .footer-desc { font-size: 13px; opacity: 0.75; line-height: 1.7; }
+  .footer-col h4 {
+    font-size: 13px;
+    font-weight: 700;
+    margin-bottom: 14px;
+    opacity: 0.6;
+    text-transform: uppercase;
+    letter-spacing: 0.8px;
+  }
+  .footer-col a, .footer-col p {
+    display: block;
+    font-size: 13.5px;
+    color: var(--white);
+    text-decoration: none;
+    opacity: 0.82;
+    margin-bottom: 8px;
+    line-height: 1.5;
+    transition: opacity 0.2s;
+  }
+  .footer-col a:hover { opacity: 1; }
+  .footer-bottom {
+    max-width: 1100px;
+    margin: 0 auto;
+    border-top: 1px solid rgba(255,255,255,0.15);
+    padding-top: 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 12px;
+    font-size: 12.5px;
+    opacity: 0.65;
+  }
+  .social-links { display: flex; gap: 14px; }
+  .social-links a { color: var(--white); font-size: 13px; opacity: 0.8; }
+  .social-links a:hover { opacity: 1; }
+  .newsletter-input-wrap {
+    display: flex;
+    gap: 0;
+    margin-top: 12px;
+  }
+  .newsletter-input-wrap input {
+    flex: 1;
+    padding: 10px 14px;
+    border: none;
+    border-radius: 8px 0 0 8px;
+    font-family: var(--font-sans);
+    font-size: 13px;
+    direction: rtl;
+    outline: none;
+  }
+  .newsletter-input-wrap button {
+    background: var(--brown-light);
+    color: var(--white);
+    border: none;
+    padding: 10px 16px;
+    border-radius: 0 8px 8px 0;
+    cursor: pointer;
+    font-family: var(--font-sans);
+    font-size: 13px;
+    transition: background 0.2s;
+  }
+  .newsletter-input-wrap button:hover { background: var(--brown); }
+
+  /* ── RESPONSIVE ── */
+  @media (max-width: 700px) {
+    nav { display: none; }
+    .hero { height: 75vh; }
+    .cart-sidebar { width: 100vw; }
+    .form-row { grid-template-columns: 1fr; }
+    .modal { padding: 28px 18px; }
+    .pills { gap: 16px; }
+  }
+
+  @media (max-width: 480px) {
+    .header-inner { padding: 12px 16px; }
+  }
+</style>
+</head>
+<body>
+
+<!-- ANNOUNCEMENT BAR -->
+<div class="announcement-bar">
+  التوصيل خلال ٢-٣ أيام عمل &nbsp;|&nbsp; التوصيل عبر واتساب متاح
+</div>
+
+<!-- HEADER -->
+<header>
+  <div class="header-inner">
+    <a href="#" class="logo">Nor Soup</a>
+    <nav>
+      <a href="#">الصفحة الرئيسية</a>
+      <a href="#products">تسوّق</a>
+      <a href="#about">قصتنا</a>
+    </nav>
+    <div class="header-icons">
+      <button class="cart-btn" onclick="openCart()">
+        <svg viewBox="0 0 24 24" stroke="white" fill="none" stroke-width="2"><path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 01-8 0"/></svg>
+        السلة
+        <span class="cart-count" id="cart-count">0</span>
+      </button>
+    </div>
+  </div>
+</header>
+
+<!-- HERO -->
+<section class="hero">
+  <img class="hero-bg" src="https://mojsoap.com/cdn/shop/files/landing_photo_8737ce43-e313-46e0-b28e-7fab96c6e019.png?v=1764402531&width=1398" alt="mojsoap hero" onerror="this.src='https://mojsoap.com/cdn/shop/files/collective_-_hands.png?v=1764427142&width=1392'" />
+  <div class="hero-overlay"></div>
+  <div class="hero-content">
+    <div style="font-family:var(--font-serif);font-size:clamp(32px,6vw,52px);font-weight:700;color:#fff;letter-spacing:2px;margin-bottom:16px;text-shadow:0 2px 12px rgba(0,0,0,0.3);">Nor Soup</div>
+    <div class="hero-tagline">لأن بشرتك تستحق الحب… كما قصدته الطبيعة</div>
+    <div class="hero-sub">مصنوع يدويًا في اسـوان بخبرة تتجاوز ٢٠ عامًا في الكيمياء والكثير من الحب</div>
+    <a href="#products" class="hero-cta">تسوّق الآن</a>
+  </div>
+</section>
+
+<!-- PILLS -->
+<div class="pills">
+  <div class="pill"><span class="pill-dot"></span>١٠٠٪ طبيعي</div>
+  <div class="pill"><span class="pill-dot"></span>معطر بالزيوت العطرية الطبيعية</div>
+  <div class="pill"><span class="pill-dot"></span>مصنوع على البارد</div>
+  <div class="pill"><span class="pill-dot"></span>يحتوي على الحليب</div>
+</div>
+
+<!-- INGREDIENTS -->
+<section class="ingredients-section">
+  <div style="max-width:1100px;margin:0 auto;">
+    <h2 class="section-title" style="margin-bottom:40px;">ما يجعلنا مختلفين</h2>
+    <div class="ingredients-grid">
+      <div class="ingredient-card">
+        <img src="https://mojsoap.com/cdn/shop/files/oils_butters.gif?v=1764450428&width=390" alt="زيوت وزبدة" />
+        <h3>زيوت وزبدة صالحة للأطعمة</h3>
+        <p>مكونات تعرفها بشرتك وتحبها، لتمنحك رفاهية هادئة مع كل غسلة</p>
+      </div>
+      <div class="ingredient-card">
+        <img src="https://mojsoap.com/cdn/shop/files/essential_oils.gif?v=1764450585&width=390" alt="زيوت عطرية" />
+        <h3>زيوت عطرية طبيعية</h3>
+        <p>مختارة لرائحتها اللطيفة وخصائصها الطبيعية المفيدة لبشرتك</p>
+      </div>
+      <div class="ingredient-card">
+        <img src="https://mojsoap.com/cdn/shop/files/milk_pour.gif?v=1764450606&width=390" alt="الحليب" />
+        <h3>يحتوي على الحليب</h3>
+        <p>لرغوة غنية وتغذية عميقة وترطيب يدوم طويلاً</p>
+      </div>
+      <div class="ingredient-card">
+        <img src="https://mojsoap.com/cdn/shop/files/cold_process.gif?v=1764450688&width=390" alt="مصنوع على البارد" />
+        <h3>مصنوع على البارد</h3>
+        <p>مصنوع يدويًا بعناية من الصفر، ليحتوي كل صابون طبيعيًا على ما يصل إلى ٢٣٪ جلسرين</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PRODUCTS -->
+<section id="products" style="background:var(--cream);padding:64px 24px;">
+  <div style="max-width:1200px;margin:0 auto;">
+    <h2 class="section-title">جميع منتجاتنا</h2>
+    <div class="products-grid" id="products-grid"></div>
+  </div>
+</section>
+
+<!-- SKIN TYPE CARDS -->
+<section class="skin-section" style="padding:64px 24px;">
+  <div style="max-width:1100px;margin:0 auto;">
+    <h2 class="section-title">تسوق حسب نوع البشرة</h2>
+    <div class="skin-grid">
+      <div class="skin-card">
+        <h3>للبشرة غير الصافية</h3>
+        <p>مصنوع بمكونات معروفة لدعم بشرة أنقى وأكثر نعومة</p>
+      </div>
+      <div class="skin-card">
+        <h3>للبشرة الباهتة وغير الموحدة</h3>
+        <p>مصنوع بمكونات معروفة لتعزيز توهج وتجانس البشرة</p>
+      </div>
+      <div class="skin-card">
+        <h3>للبشرة الناضجة</h3>
+        <p>مصنوع بمكونات معروفة لتغذية ودعم البشرة التي تحتاج لرعاية إضافية</p>
+      </div>
+      <div class="skin-card">
+        <h3>للبشرة الحساسة</h3>
+        <p>مصنوع بمكونات معروفة لتهدئة البشرة الحساسة ومنحها عناية ناعمة</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- REVIEWS -->
+<section class="reviews-section">
+  <div style="max-width:1100px;margin:0 auto;">
+    <h2 class="section-title">أشخاص حقيقيون، تجارب حقيقية</h2>
+    <div class="reviews-grid">
+      <div class="review-card">
+        <div class="stars">★★★★★</div>
+        <div class="review-text">استخدمت هذا الصابون لفترة، وقد غيّر بشرتي تمامًا. ينظف حب الشباب بسرعة ويترك البشرة ناعمة ومشرقة.</div>
+        <div class="reviewer">أنود عمر</div>
+        <div class="review-product">صابون السنست</div>
+      </div>
+      <div class="review-card">
+        <div class="stars">★★★★★</div>
+        <div class="review-text">منتج رائع! فعلاً غير بشرتي من أول أسبوع. بشرتي كانت تعاني من حب شباب مستمر والآن أصبحت نظيفة.</div>
+        <div class="reviewer">منة منير</div>
+        <div class="review-product">صابون زبدة المانجو وإكليل الجبل</div>
+      </div>
+      <div class="review-card">
+        <div class="stars">★★★★★</div>
+        <div class="review-text">اشتريته لابني ووجده مميزاً للوجه والجسم، النتائج رائعة جداً. أنصح به بشدة.</div>
+        <div class="reviewer">ماي دانيش</div>
+        <div class="review-product">صابون السنست</div>
+      </div>
+      <div class="review-card">
+        <div class="stars">★★★★★</div>
+        <div class="review-text">عندما استخدمته، شعرت بشرتي على الفور بالترطيب. رائحة جميلة ونتائج مذهلة!</div>
+        <div class="reviewer">سارة مغربي</div>
+        <div class="review-product">صابون التبغ | حليب الأتان</div>
+      </div>
+      <div class="review-card">
+        <div class="stars">★★★★★</div>
+        <div class="review-text">استخدمته لـ٣ أسابيع وساعدني كثيراً في تقليل البثور الصغيرة على الجبهة وحب شباب الظهر دون تجفيف البشرة.</div>
+        <div class="reviewer">منى</div>
+        <div class="review-product">صابون الكركم الذهبي</div>
+      </div>
+      <div class="review-card">
+        <div class="stars">★★★★★</div>
+        <div class="review-text">كنت أعاني من حالة جلدية لم أستطع علاجها، جربت صابون شجرة الشاي ومن أول استخدام رأيت تحسناً ملحوظاً!</div>
+        <div class="reviewer">Maria Martinez</div>
+        <div class="review-product">صابون السنست</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PRESS -->
+<section id="about" class="press-section">
+  <div class="press-inner">
+    <h2 class="section-title">كما ظهر في المتحف المصري الكبير</h2>
+    <p>mojsoap متوفر حصريًا عبر موقعنا الإلكتروني وفي متجر الهدايا الرسمي للمتحف المصري الكبير. يمكنكم العثور على مجموعة مصرية فرعونية متوفرة حصريًا في المتجر الرسمي بالمنطقة التجارية.</p>
+    <img src="https://mojsoap.com/cdn/shop/files/IMG_0866_115654b2-fe76-44ac-9860-ac8df082627b.jpg?v=1706620554&width=900" alt="Grand Egyptian Museum" />
+    
+   
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-inner">
+    <div>
+      <div class="footer-logo">Nor Soup</div>
+      <div class="footer-desc">نحن نعرض الفهم الجديد للعناية بالبشرة. جميع منتجاتنا طبيعية 100%، مصنوعة يدويًا في اسـوان بخبرة تتجاوز ٢٠ عامًا.</div>
+      <br/>
+      <div style="font-size:12px;opacity:0.6;line-height:1.8;">
+        <div>Nor Soup لصناعة الصابون ومنتجات العناية بالبشرة</div>
+        
+      </div>
+    </div>
+    <div class="footer-col">
+      <h4>روابط سريعة</h4>
+      <a href="#">الشحن</a>
+      <a href="#">سياسة الإرجاع</a>
+      <a href="#">سياسة الخصوصية</a>
+      <a href="#">شروط الخدمة</a>
+      <a href="#">الأسئلة الشائعة</a>
+    </div>
+    <div class="footer-col">
+      <h4>النشرة الإخبارية</h4>
+      <p style="opacity:0.75;">اشترك لتصلك عروض حصرية</p>
+      <div class="newsletter-input-wrap">
+        <input type="email" placeholder="بريدك الإلكتروني" />
+        <button>اشترك</button>
+      </div>
+      <br/>
+      <div class="social-links">
+        <a href="https://www.facebook.com/alaa.moh.92102564/" target="_blank">Facebook</a>
+        \
+      </div>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <span>© 2026 - Nor Soup</span>
+    <span>جميع الحقوق محفوظة</span>
+  </div>
+</footer>
+
+<!-- CART SIDEBAR -->
+<div class="cart-overlay" id="cart-overlay" onclick="closeCart()"></div>
+<div class="cart-sidebar" id="cart-sidebar">
+  <div class="cart-header">
+    <h2>سلة التسوّق</h2>
+    <button class="close-cart" onclick="closeCart()">✕</button>
+  </div>
+  <div class="cart-items" id="cart-items-list">
+    <div class="cart-empty" id="cart-empty">
+      <p>سلة التسوّق فارغة</p>
+      <a href="#products" onclick="closeCart()">متابعة التسوق</a>
+    </div>
+  </div>
+  <div class="cart-footer" id="cart-footer" style="display:none;">
+    <div class="cart-subtotal">
+      <span>الإجمالي</span>
+      <span id="cart-total-display">LE 0.00</span>
+    </div>
+    <button class="checkout-btn" onclick="openOrderModal()">
+      <svg viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg"><path d="M25.873 4.615C23.3 2.043 19.856.623 16.198.623c-7.525 0-13.64 6.115-13.64 13.64 0 2.404.627 4.753 1.82 6.824L2.44 27.87l7.003-1.836a13.649 13.649 0 006.752 1.723h.006c7.522 0 13.637-6.115 13.637-13.64 0-3.646-1.42-7.073-3.965-9.502zm-9.675 20.99h-.004a11.334 11.334 0 01-5.782-1.583l-.414-.247-4.294 1.126 1.146-4.182-.27-.428a11.32 11.32 0 01-1.734-6.028c0-6.254 5.09-11.343 11.352-11.343 3.031 0 5.878 1.18 8.02 3.322 2.14 2.143 3.32 4.99 3.318 8.024-.003 6.256-5.092 11.339-11.338 11.339zm6.223-8.496c-.342-.17-2.018-.994-2.33-1.108-.313-.113-.54-.17-.768.17-.228.342-.882 1.108-1.08 1.337-.2.228-.398.256-.74.086-.342-.17-1.44-.53-2.742-1.69-1.013-.903-1.697-2.018-1.895-2.36-.2-.342-.02-.527.148-.697.15-.15.342-.398.513-.597.17-.2.228-.342.342-.57.113-.228.057-.427-.028-.597-.085-.17-.768-1.847-1.05-2.53-.277-.665-.558-.574-.768-.585-.2-.01-.427-.012-.655-.012-.228 0-.597.085-.91.427-.313.342-1.196 1.167-1.196 2.844 0 1.678 1.225 3.3 1.395 3.527.17.228 2.414 3.685 5.847 5.169.817.353 1.455.563 1.952.72.82.261 1.566.224 2.156.136.658-.098 2.018-.825 2.302-1.623.284-.797.284-1.48.2-1.622-.086-.143-.314-.228-.656-.4z"/></svg>
+      إتمام الطلب عبر واتساب
+    </button>
+  </div>
+</div>
+
+<!-- ORDER FORM MODAL -->
+<div class="modal-overlay" id="order-modal">
+  <div class="modal">
+    <button class="close-modal" onclick="closeOrderModal()">✕</button>
+    <h2>تفاصيل الطلب</h2>
+    <div class="modal-subtitle">أدخل بياناتك وسيتم تحويلك إلى واتساب لتأكيد طلبك</div>
+
+    <div class="order-summary">
+      <div class="order-summary-title">ملخص الطلب</div>
+      <div id="modal-order-items"></div>
+      <div class="order-summary-total">
+        <span>الإجمالي</span>
+        <span id="modal-total">LE 0.00</span>
+      </div>
+    </div>
+
+    <div class="form-field">
+      <label>الاسم الكامل *</label>
+      <input type="text" id="field-name" placeholder="مثال: أحمد محمد" required />
+    </div>
+    <div class="form-field">
+      <label>رقم الهاتف *</label>
+      <input type="tel" id="field-phone" placeholder="01xxxxxxxxx" required />
+    </div>
+    <div class="form-field">
+      <label>المحافظة *</label>
+      <select id="field-gov" required>
+        <option value="">اختر المحافظة</option>
+        <option>القاهرة</option>
+        <option>الجيزة</option>
+        <option>الإسكندرية</option>
+        <option>الدقهلية</option>
+        <option>البحر الأحمر</option>
+        <option>البحيرة</option>
+        <option>الفيوم</option>
+        <option>الغربية</option>
+        <option>الإسماعيلية</option>
+        <option>المنوفية</option>
+        <option>المنيا</option>
+        <option>القليوبية</option>
+        <option>الوادي الجديد</option>
+        <option>السويس</option>
+        <option>أسوان</option>
+        <option>أسيوط</option>
+        <option>بني سويف</option>
+        <option>بورسعيد</option>
+        <option>دمياط</option>
+        <option>جنوب سيناء</option>
+        <option>شمال سيناء</option>
+        <option>سوهاج</option>
+        <option>قنا</option>
+        <option>كفر الشيخ</option>
+        <option>لوكسر</option>
+        <option>مطروح</option>
+        <option>الشرقية</option>
+      </select>
+    </div>
+    <div class="form-field">
+      <label>العنوان التفصيلي *</label>
+      <textarea id="field-address" placeholder="الشارع، الحي، رقم العمارة..."></textarea>
+    </div>
+    <div class="form-field">
+      <label>ملاحظات إضافية (اختياري)</label>
+      <input type="text" id="field-notes" placeholder="أي تعليمات خاصة بالتوصيل..." />
+    </div>
+
+    <button class="whatsapp-submit" onclick="sendToWhatsApp()">
+      <svg viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg"><path d="M25.873 4.615C23.3 2.043 19.856.623 16.198.623c-7.525 0-13.64 6.115-13.64 13.64 0 2.404.627 4.753 1.82 6.824L2.44 27.87l7.003-1.836a13.649 13.649 0 006.752 1.723h.006c7.522 0 13.637-6.115 13.637-13.64 0-3.646-1.42-7.073-3.965-9.502zm-9.675 20.99h-.004a11.334 11.334 0 01-5.782-1.583l-.414-.247-4.294 1.126 1.146-4.182-.27-.428a11.32 11.32 0 01-1.734-6.028c0-6.254 5.09-11.343 11.352-11.343 3.031 0 5.878 1.18 8.02 3.322 2.14 2.143 3.32 4.99 3.318 8.024-.003 6.256-5.092 11.339-11.338 11.339zm6.223-8.496c-.342-.17-2.018-.994-2.33-1.108-.313-.113-.54-.17-.768.17-.228.342-.882 1.108-1.08 1.337-.2.228-.398.256-.74.086-.342-.17-1.44-.53-2.742-1.69-1.013-.903-1.697-2.018-1.895-2.36-.2-.342-.02-.527.148-.697.15-.15.342-.398.513-.597.17-.2.228-.342.342-.57.113-.228.057-.427-.028-.597-.085-.17-.768-1.847-1.05-2.53-.277-.665-.558-.574-.768-.585-.2-.01-.427-.012-.655-.012-.228 0-.597.085-.91.427-.313.342-1.196 1.167-1.196 2.844 0 1.678 1.225 3.3 1.395 3.527.17.228 2.414 3.685 5.847 5.169.817.353 1.455.563 1.952.72.82.261 1.566.224 2.156.136.658-.098 2.018-.825 2.302-1.623.284-.797.284-1.48.2-1.622-.086-.143-.314-.228-.656-.4z"/></svg>
+      إرسال الطلب عبر واتساب
+    </button>
+    <div class="form-note">سيتم فتح واتساب تلقائياً مع تفاصيل طلبك للتأكيد والدفع عند الاستلام</div>
+  </div>
+</div>
+
+<script>
+// ── PRODUCT DATA ──
+const products = [
+  {
+    id: 1,
+    name: "صابون السنست",
+    price: 320,
+    skin: "جافة • عادية • مختلطة • دهنية",
+    img: "https://mojsoap.com/cdn/shop/files/sunset-main.png?v=1764404561&width=400",
+    outOfStock: false
+  },
+  {
+    id: 2,
+    name: "صابون الكركم الذهبي",
+    price: 370,
+    skin: "عادية • مختلطة • دهنية",
+    img: "https://mojsoap.com/cdn/shop/files/turmeric-main.png?v=1764404529&width=400",
+    outOfStock: false
+  },
+  {
+    id: 3,
+    name: "صابون النيلي وكاليندولا",
+    price: 370,
+    skin: "حساسة • جافة • عادية • مختلطة • دهنية",
+    img: "https://mojsoap.com/cdn/shop/files/indigo-main.png?v=1764404236&width=400",
+    outOfStock: true
+  },
+  {
+    id: 4,
+    name: "صابون الصبار والطين الفرنسي",
+    price: 320,
+    skin: "عادية • مختلطة • دهنية",
+    img: "https://mojsoap.com/cdn/shop/files/aloevera-main.png?v=1764404491&width=400",
+    outOfStock: false
+  },
+  {
+    id: 5,
+    name: "صابون القرع والكاموميل",
+    price: 320,
+    skin: "حساسة • جافة • عادية • مختلطة • دهنية",
+    img: "https://mojsoap.com/cdn/shop/files/pumpkin-main.png?v=1764404383&width=400",
+    outOfStock: false
+  },
+  {
+    id: 6,
+    name: "صابون شجرة الشاي وزبدة المانجو",
+    price: 320,
+    skin: "حساسة • جافة • عادية • مختلطة",
+    img: "https://mojsoap.com/cdn/shop/files/teatreemango-main.png?v=1764404632&width=400",
+    outOfStock: false
+  },
+  {
+    id: 7,
+    name: "صابون إكليل الجبل وزبدة المانجو",
+    price: 320,
+    skin: "حساسة • جافة • عادية • مختلطة",
+    img: "https://mojsoap.com/cdn/shop/files/rosemarymango-main.png?v=1764404599&width=400",
+    outOfStock: false
+  },
+  {
+    id: 8,
+    name: "التبغ | صابون حليب الأتان وزيت الأرجان",
+    price: 600,
+    skin: "عادية • مختلطة • دهنية",
+    img: "https://mojsoap.com/cdn/shop/files/tobacco-main.png?v=1764404698&width=400",
+    outOfStock: false
+  },
+  {
+    id: 9,
+    name: "كركم ولبان الدكر | صابون حليب الأتان وزيت الأرجان",
+    price: 600,
+    skin: "عادية • مختلطة • دهنية",
+    img: "https://mojsoap.com/cdn/shop/files/turmericdonkey-main.png?v=1764404666&width=400",
+    outOfStock: false
+  },
+  {
+    id: 10,
+    name: "صابون الطين البرازيلي",
+    price: 320,
+    skin: "عادية • مختلطة • دهنية",
+    img: "https://mojsoap.com/cdn/shop/files/brazilian_clay_-_YELLOW.jpg?v=1779367711&width=400",
+    outOfStock: false
+  },
+  {
+    id: 11,
+    name: "صحن صابون خشب",
+    price: 180,
+    skin: "جميع أنواع البشرة",
+    img: "https://mojsoap.com/cdn/shop/files/soap_dish_-_main_1f560bd5-3896-49e5-8875-15be1022b358.png?v=1764404468&width=400",
+    outOfStock: false
+  },
+  {
+    id: 12,
+    name: "مقشّر ملح الهيمالايا بزيت ثمر الورد والمورينغا",
+    price: 280,
+    skin: "جافة • عادية • مختلطة • دهنية",
+    img: "https://mojsoap.com/cdn/shop/files/IMG_0783.jpg?v=1764169296&width=400",
+    outOfStock: false
+  },
+  {
+    id: 13,
+    name: "best-sellers bundle",
+    price: 865,
+    skin: "عادية • مختلطة • دهنية",
+    img: "https://mojsoap.com/cdn/shop/files/4863f055-413e-4d70-9ec5-3e6d45995fc3_2ea39d79-6c89-4af6-ab1d-74a6522ff79f.jpg?v=1773060895&width=400",
+    outOfStock: false
+  },
+  {
+    id: 14,
+    name: "everything-shower essentials",
+    price: 920,
+    skin: "عادية • مختلطة • دهنية",
+    img: "https://mojsoap.com/cdn/shop/files/IMG_3005.jpg?v=1774774331&width=400",
+    outOfStock: true
+  }
+];
+
+// ── CART STATE ──
+let cart = [];
+
+// ── RENDER PRODUCTS ──
+function renderProducts() {
+  const grid = document.getElementById('products-grid');
+  grid.innerHTML = products.map(p => `
+    <div class="product-card" onclick="${p.outOfStock ? '' : `addToCart(${p.id})`}">
+      <div class="product-img-wrap">
+        <img src="${p.img}" alt="${p.name}" loading="lazy" onerror="this.src='https://mojsoap.com/cdn/shop/files/collective_-_hands.png?v=1764427142&width=400'" />
+        ${p.outOfStock ? '<span class="out-badge">نفد من المخزون</span>' : ''}
+      </div>
+      <div class="product-info">
+        <div class="product-skin-type">للبشرة ال ${p.skin}</div>
+        <div class="product-name">${p.name}</div>
+        <div class="product-bottom">
+          <div class="product-price">LE ${p.price.toFixed(2)}</div>
+          <button class="add-btn" ${p.outOfStock ? 'disabled' : `onclick="event.stopPropagation();addToCart(${p.id})"`}>
+            ${p.outOfStock ? 'نفد' : 'إضافة +'}
+          </button>
+        </div>
+      </div>
+    </div>
+  `).join('');
+}
+
+// ── CART LOGIC ──
+function addToCart(id) {
+  const product = products.find(p => p.id === id);
+  const existing = cart.find(i => i.id === id);
+  if (existing) {
+    existing.qty++;
+  } else {
+    cart.push({ ...product, qty: 1 });
+  }
+  renderCart();
+  openCart();
+}
+
+function removeFromCart(id) {
+  cart = cart.filter(i => i.id !== id);
+  renderCart();
+}
+
+function changeQty(id, delta) {
+  const item = cart.find(i => i.id === id);
+  if (!item) return;
+  item.qty += delta;
+  if (item.qty <= 0) removeFromCart(id);
+  else renderCart();
+}
+
+function getTotal() {
+  return cart.reduce((sum, i) => sum + i.price * i.qty, 0);
+}
+
+function renderCart() {
+  const list = document.getElementById('cart-items-list');
+  const empty = document.getElementById('cart-empty');
+  const footer = document.getElementById('cart-footer');
+  const count = document.getElementById('cart-count');
+  const totalDisplay = document.getElementById('cart-total-display');
+
+  const totalQty = cart.reduce((s, i) => s + i.qty, 0);
+  count.textContent = totalQty;
+
+  if (cart.length === 0) {
+    empty.style.display = 'block';
+    footer.style.display = 'none';
+    // Clear items except empty notice
+    const items = list.querySelectorAll('.cart-item');
+    items.forEach(el => el.remove());
+    return;
+  }
+
+  empty.style.display = 'none';
+  footer.style.display = 'block';
+
+  const existingItems = list.querySelectorAll('.cart-item');
+  existingItems.forEach(el => el.remove());
+
+  cart.forEach(item => {
+    const div = document.createElement('div');
+    div.className = 'cart-item';
+    div.innerHTML = `
+      <img src="${item.img}" alt="${item.name}" />
+      <div class="cart-item-info">
+        <div class="cart-item-name">${item.name}</div>
+        <div class="cart-item-price">LE ${(item.price * item.qty).toFixed(2)}</div>
+        <div class="qty-controls">
+          <button class="qty-btn" onclick="changeQty(${item.id}, -1)">−</button>
+          <span class="qty-num">${item.qty}</span>
+          <button class="qty-btn" onclick="changeQty(${item.id}, 1)">+</button>
+        </div>
+      </div>
+      <button class="remove-item" onclick="removeFromCart(${item.id})">🗑</button>
+    `;
+    list.insertBefore(div, list.firstChild);
+  });
+
+  totalDisplay.textContent = `LE ${getTotal().toFixed(2)}`;
+}
+
+// ── CART OPEN/CLOSE ──
+function openCart() {
+  document.getElementById('cart-overlay').classList.add('open');
+  document.getElementById('cart-sidebar').classList.add('open');
+}
+function closeCart() {
+  document.getElementById('cart-overlay').classList.remove('open');
+  document.getElementById('cart-sidebar').classList.remove('open');
+}
+
+// ── ORDER MODAL ──
+function openOrderModal() {
+  if (cart.length === 0) return;
+  closeCart();
+  // Populate modal order summary
+  const itemsEl = document.getElementById('modal-order-items');
+  itemsEl.innerHTML = cart.map(i => `
+    <div class="order-summary-item">
+      <span>${i.name} × ${i.qty}</span>
+      <span>LE ${(i.price * i.qty).toFixed(2)}</span>
+    </div>
+  `).join('');
+  document.getElementById('modal-total').textContent = `LE ${getTotal().toFixed(2)}`;
+  document.getElementById('order-modal').classList.add('open');
+}
+function closeOrderModal() {
+  document.getElementById('order-modal').classList.remove('open');
+}
+
+// Click outside modal to close
+document.getElementById('order-modal').addEventListener('click', function(e) {
+  if (e.target === this) closeOrderModal();
+});
+
+// ── WHATSAPP SEND ──
+function sendToWhatsApp() {
+  const name = document.getElementById('field-name').value.trim();
+  const phone = document.getElementById('field-phone').value.trim();
+  const gov = document.getElementById('field-gov').value;
+  const address = document.getElementById('field-address').value.trim();
+  const notes = document.getElementById('field-notes').value.trim();
+
+  if (!name) { alert('يرجى إدخال الاسم الكامل'); return; }
+  if (!phone) { alert('يرجى إدخال رقم الهاتف'); return; }
+  if (!gov) { alert('يرجى اختيار المحافظة'); return; }
+  if (!address) { alert('يرجى إدخال العنوان'); return; }
+
+  const itemsText = cart.map(i =>
+    `• ${i.name} × ${i.qty} — LE ${(i.price * i.qty).toFixed(2)}`
+  ).join('\n');
+
+  const message =
+    `🧼 *طلب جديد من Nor Soup*\n\n` +
+    `👤 *الاسم:* ${name}\n` +
+    `📞 *الهاتف:* ${phone}\n` +
+    `🗺️ *المحافظة:* ${gov}\n` +
+    `📍 *العنوان:* ${address}\n` +
+    (notes ? `📝 *ملاحظات:* ${notes}\n` : '') +
+    `\n📦 *المنتجات:*\n${itemsText}\n\n` +
+    `💰 *الإجمالي: LE ${getTotal().toFixed(2)}*`;
+
+  // Replace WHATSAPP_NUMBER with your actual number (e.g. 201009805534)
+  const whatsappNumber = 'WHATSAPP_NUMBER';
+  const url = `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(message)}`;
+  window.open(url, '_blank');
+}
+
+// ── INIT ──
+renderProducts();
+renderCart();
+</script>
+</body>
+</html>
